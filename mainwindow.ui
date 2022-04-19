@@ -17,14 +17,14 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>360</y>
+      <x>210</x>
+      <y>150</y>
       <width>80</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add Node</string>
+     <string>Push Back</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>Int List</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_2">
@@ -63,7 +63,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>Double List</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_3">
@@ -76,7 +76,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>String List</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_4">
@@ -89,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>Rational List</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_5">
@@ -102,7 +102,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>Date List</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="radioButton_6">
@@ -115,14 +115,14 @@
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>Complex List</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>320</y>
+      <x>210</x>
+      <y>60</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -151,11 +151,76 @@
      <string>Display</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>330</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>remove duplicates</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>110</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insert</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>60</y>
+      <width>113</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>index:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>330</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sort</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>190</y>
+      <y>110</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Push Front</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>240</y>
       <width>256</width>
       <height>192</height>
      </rect>
