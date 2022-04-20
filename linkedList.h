@@ -525,7 +525,7 @@ void LinkedList<E>::pop_front() //throw(ListEmpty)
         if(head==nullptr)
             throw ListEmpty();
         // if last node is to be removed
-        if(head == tail)
+        else if(head == tail)
         {
             head = nullptr;
             tail = nullptr;
@@ -533,8 +533,8 @@ void LinkedList<E>::pop_front() //throw(ListEmpty)
         else
         {
             head = head->next;
+            delete current;
         }
-        delete current;
     }
     catch (ListEmpty LE)
     {

@@ -42,36 +42,7 @@ class VectorList
         void resize( unsigned size );
 };
 
-template <typename E>
-void VectorList<E>::expand()
-{
-    if(cap==0)
-        cap=1;
-    else
-        cap*=2;
-    VectorList<E> temp;
-    for(int i = 0; i < sz;i++)
-    {
-        temp.push_back(data[i]);
-    }
-    delete data;
-    data = new E[cap];
-    data = temp.data;
-}
 
-template <typename E>
-void VectorList<E>::expand(int amount)
-{
-    cap+=amount;
-    VectorList<E> temp;
-    for(int i = 0; i < sz;i++)
-    {
-        temp.push_back(data[i]);
-    }
-    delete data;
-    data = new E[cap];
-    data = temp.data;
-}
 
 template <typename E>
 VectorList<E>::VectorList()
@@ -141,7 +112,6 @@ void VectorList<E>::clear( )
 template <typename E>
 void VectorList<E>::resize( unsigned size )
 {
-    unsigned oldSize=sz;
     sz = size;
     if(sz>cap)
     {
@@ -151,5 +121,38 @@ void VectorList<E>::resize( unsigned size )
             expand(size-cap);
     }
 
+}
+
+template <typename E>
+void VectorList<E>::expand()
+{
+    if(cap==0)
+        cap=1;
+    else
+    {
+        cap*=2;
+        VectorList<E> temp;
+        for(int i = 0; i < sz;i++)
+        {
+            temp.push_back(data[i]);
+        }
+        delete data;
+        data = new E[cap];
+        data = temp.data;
+    }
+}
+
+template <typename E>
+void VectorList<E>::expand(int amount)
+{
+    cap+=amount;
+    VectorList<E> temp;
+    for(int i = 0; i < sz;i++)
+    {
+        temp.push_back(data[i]);
+    }
+    delete data;
+    data = new E[cap];
+    data = temp.data;
 }
 #endif // VECTORLIST_H

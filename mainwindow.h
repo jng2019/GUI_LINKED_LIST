@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "vectorList.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,5 +27,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    VectorList<LinkedList<int>> v;
+
 };
 #endif // MAINWINDOW_H
