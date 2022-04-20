@@ -2,6 +2,8 @@
 #define VECTORLIST_H
 #include "linkedList.h"
 
+#include <iostream>
+
 template <typename E>
 class VectorList
 {
@@ -19,6 +21,8 @@ class VectorList
         ***************/
         VectorList();        //CONSTRUCTOR
 
+        VectorList(const VectorList<E> &copy);
+        VectorList<E> operator=(const VectorList<E> &copy);
 
         /***************
         ** DESTRUCTOR **
@@ -49,7 +53,38 @@ VectorList<E>::VectorList()
 {
     sz=0;
     cap=0;
-    data = new E[0];
+    data = nullptr;
+}
+
+template <typename E>
+VectorList<E>::VectorList(const VectorList<E> &copy)
+{
+    cout << "copy constructor has been calld\n";
+    sz=copy.sz;
+    cap=copy.cap;
+
+    for(int i = 0; i < sz; i++)
+    {
+        data[i] = copy.data[i];
+    }
+}
+
+template <typename E>
+VectorList<E> VectorList<E>::operator=(const VectorList<E> &copy)
+{
+    if (this == &copy)
+        return *this;
+    if (sz!=0)
+        delete data;
+    sz=copy.sz;
+    cap=copy.cap;
+
+    for(int i = 0; i < sz; i++)
+    {
+        data[i] = copy.data[i];
+    }
+    return *this;
+
 }
 
 template <typename E>
@@ -68,11 +103,13 @@ unsigned VectorList<E>::size( ) const
 {
     return sz;
 }
+
 template <typename E>
 unsigned VectorList<E>::capacity() const
 {
     return cap;
 }
+
 template <typename E>
 bool VectorList<E>::empty() const
 {
@@ -95,7 +132,8 @@ void VectorList<E>::push_back( E &list )
     resize(++sz);
     if(sz>cap)
         expand();
-   data[sz-1]=list;
+    std::cout << "size: " << sz;
+   data[0]=list;
 }
 
 template <typename E>
@@ -120,7 +158,6 @@ void VectorList<E>::resize( unsigned size )
         else
             expand(size-cap);
     }
-
 }
 
 template <typename E>
@@ -132,6 +169,7 @@ void VectorList<E>::expand()
     {
         cap*=2;
         VectorList<E> temp;
+        data = new
         for(int i = 0; i < sz;i++)
         {
             temp.push_back(data[i]);

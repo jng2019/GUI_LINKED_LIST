@@ -89,6 +89,7 @@ public:
           This creates a new list that is a deep copy of the given list.
         ****************************************************************/
         LinkedList(const LinkedList& source);
+
         /***************
         ** DESTRUCTOR **
         ***************/
@@ -107,7 +108,7 @@ public:
 
           This assigns the values of the nodes in the given list to "this" list. If the current list is not empty then the list is cleared before copying over the other list.
         ****************************************************************/
-        LinkedList & operator=( const LinkedList& source );
+        LinkedList& operator=( const LinkedList& source );
         /****************************************************************
         push_front
             value - value of the new node inserted at beginning of list
