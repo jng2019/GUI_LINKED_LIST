@@ -3,6 +3,7 @@
 #include "linkedList.h"
 
 #include <iostream>
+#include <QDebug>
 
 template <typename E>
 class VectorList
@@ -51,6 +52,7 @@ class VectorList
 template <typename E>
 VectorList<E>::VectorList()
 {
+    qDebug() << "Default constructor has been calld\n";
     sz=0;
     cap=0;
     data = nullptr;
@@ -59,9 +61,10 @@ VectorList<E>::VectorList()
 template <typename E>
 VectorList<E>::VectorList(const VectorList<E> &copy)
 {
-    cout << "copy constructor has been calld\n";
+    qDebug() << "copy constructor has been calld\n";
     sz=copy.sz;
     cap=copy.cap;
+    data = new E[cap];
 
     for(int i = 0; i < sz; i++)
     {
@@ -72,12 +75,15 @@ VectorList<E>::VectorList(const VectorList<E> &copy)
 template <typename E>
 VectorList<E> VectorList<E>::operator=(const VectorList<E> &copy)
 {
+    qDebug() << "Overloaded Assignment operator has been calld\n";
     if (this == &copy)
         return *this;
     if (sz!=0)
         delete data;
     sz=copy.sz;
     cap=copy.cap;
+
+    data = new E[cap];
 
     for(int i = 0; i < sz; i++)
     {
@@ -131,9 +137,12 @@ void VectorList<E>::push_back( E &list )
 {
     resize(++sz);
     if(sz>cap)
+    {
+        qDebug() << "second expand called";
         expand();
-    std::cout << "size: " << sz;
-   data[0]=list;
+    }
+    qDebug() << "in push_back(list) SIZE: " << sz << " CAP: " << cap;
+   data[sz-1]=list;
 }
 
 template <typename E>
@@ -153,6 +162,7 @@ void VectorList<E>::resize( unsigned size )
     sz = size;
     if(sz>cap)
     {
+        qDebug() << "in resize(size) SIZE: " << sz << " CAP: " << cap;
         if(sz*2>size-cap)
             expand();
         else
@@ -164,19 +174,22 @@ template <typename E>
 void VectorList<E>::expand()
 {
     if(cap==0)
+    {
         cap=1;
+        qDebug() << "in expand() SIZE: " << sz << " CAP: " << cap;
+    }
     else
     {
         cap*=2;
-        VectorList<E> temp;
-        data = new
+        E *temp;
+        temp = new E[cap];
         for(int i = 0; i < sz;i++)
         {
-            temp.push_back(data[i]);
+            temp[i] = data[i];
         }
-        delete data;
-        data = new E[cap];
-        data = temp.data;
+        delete [] data;
+        data=temp;
+        delete [] temp;
     }
 }
 

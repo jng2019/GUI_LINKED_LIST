@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "listEmpty.h"
+#include <QDebug>
 
 using namespace std;
 /***************************************************
@@ -24,8 +25,8 @@ class LinkedList
 {
 
 private:
-    Node<E> *head;  //IN/OUT - front of the list
-    Node<E> *tail;  //IN/OUT - end of the list
+    Node<E>* head;  //IN/OUT - front of the list
+    Node<E>* tail;  //IN/OUT - end of the list
 public:
 
     class Iterator
@@ -392,22 +393,32 @@ __________________________________________________
 template <typename E>
 LinkedList<E> & LinkedList<E>::operator=( const LinkedList& source )
 {
+    qDebug() << "In Linked List overloaded operator called";
+
     Node<E> *current;
+
     // If the lists are the same
     if(this == &source)
-        return *this;
-    // If this list is not empty
-    if (head != nullptr)
-    {
-        while(head != nullptr)
-            this->pop_front();
+    {    return *this;
+        qDebug() << "copy";
     }
+    // If this list is not empty
+//    if (head != nullptr)
+//    {
+//        qDebug() << "not empty";
+//        while(head != nullptr)
+//            this->pop_front();
+//    }
 
+    qDebug() << "not empty";
 
     current = source.head;
+    qDebug() << "adding to data";
+
     // Copies over values from D list
     while(current != nullptr)
     {
+        qDebug() << "adding to data";
         this->push_back(current->data);
         current = current->next;
     }

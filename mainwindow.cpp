@@ -20,6 +20,7 @@ void MainWindow::on_pushButton_7_clicked() // push front
     int row = ui->listWidget->currentRow();
     int input;
     input = ui->lineEdit->text().toInt();
+    qDebug() << row ;
     if(row==-1)
         ui->textBrowser->setText(QString::fromStdString("No list selected!"));
     else
