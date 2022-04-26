@@ -204,6 +204,8 @@ public:
 
         string getString() const;
 
+        void insert(int index, E value);
+
 };
 
 /*************************************************
@@ -409,11 +411,9 @@ LinkedList<E> & LinkedList<E>::operator=( const LinkedList& source )
         cout << "In Linked List overloaded operator called" << std::endl;
 
     Node<E> *current;
-    // current=this->head;
     // If the lists are the same
     if(this == &source)
     {
-        //qDebug()
         cout << "copy" << std::endl;
         return *this;
     }
@@ -429,7 +429,6 @@ LinkedList<E> & LinkedList<E>::operator=( const LinkedList& source )
 
     current = source.head;
 
-    // Copies over values from D list
     while(current != nullptr)
     {
         cout << "copying over data" << endl;
@@ -846,6 +845,32 @@ string LinkedList<E>::getString() const
         current = current->next;
     }
     return output;
+}
+
+template <typename E>
+void LinkedList<E>::insert(int index, E value)
+{
+    Node<E> *current, *newNode;
+    current = head;
+    newNode = new Node(value);
+    if (index ==0)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+    else if (index == this->length()-1)
+    {
+        tail->next=newNode;
+        newNode->next=nullptr;
+        tail = newNode;
+    }
+    else
+    {
+        for(int i = 0; i < index; i++)
+            current = current->next;
+        newNode->next = current->next;
+        current->next=newNode;
+    }
 }
 
 #endif // LINKEDLIST_H

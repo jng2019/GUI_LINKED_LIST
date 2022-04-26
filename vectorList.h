@@ -83,7 +83,7 @@ VectorList<E> VectorList<E>::operator=(const VectorList<E> &copy)
     if (this == &copy)
         return *this;
     if (sz!=0)
-        delete data;
+        delete [] data;
     sz=copy.sz;
     cap=copy.cap;
 
@@ -147,8 +147,8 @@ void VectorList<E>::push_back( E *list )
     {
         expand();
     }
-   data[sz-1]=*list;
-   cout << "SIZE: " << sz << " CAP: " << cap << endl;
+   data[sz-1 ]= *list;
+   cout << "finished push_back vector\n";
 
 }
 
@@ -189,23 +189,25 @@ void VectorList<E>::expand()
     }
     else
     {
+        cout << "ran this\n";
         cap*=2;
         E *temp;
         temp = new E[cap];
+        cout << "SIZE: " << sz << " CAP: " << cap << endl;
         for(int i = 0; i < sz-1;i++)
         {
             temp[i] = data[i];
         }
         delete [] data;
         data=temp;
-        delete [] temp;
+        //delete [] temp;
+        cout << "finished expand\n";
     }
 }
 
 template <typename E>
 void VectorList<E>::expand(int amount)
 {
-    cout << "ran this\n";
     cap+=amount;
     E* temp;
     temp = new E[cap];
