@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-LinkedList<int> pushint;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,11 +19,10 @@ void MainWindow::on_pushButton_7_clicked() // push front
     int row = ui->listWidget->currentRow();
     int input;
     input = ui->lineEdit->text().toInt();
-    qDebug() << row ;
     if(row==-1)
         ui->textBrowser->setText(QString::fromStdString("No list selected!"));
     else
-        (v.at(row)).push_front(input);
+        (vInt.at(row)).push_front(input);
 }
 
 void MainWindow::on_pushButton_clicked() // push back button
@@ -35,7 +33,7 @@ void MainWindow::on_pushButton_clicked() // push back button
     if (row==-1)
             ui->textBrowser->setText(QString::fromStdString("No list selected!"));
     else
-        (v.at(row)).push_back(input);
+        (vInt.at(row)).push_back(input);
 }
 
 
@@ -43,7 +41,7 @@ void MainWindow::on_pushButton_3_clicked()  //display button
 {
     int row = ui->listWidget->currentRow();
     QString output;
-    output = QString::fromStdString(v.at(row).getString());
+    output = QString::fromStdString(vInt.at(row).getString());
 
     if(row==-1)
     {
@@ -67,11 +65,30 @@ void MainWindow::on_pushButton_2_clicked()  //add list
     if (intl)
     {
         ui->listWidget->addItem(QString::fromStdString("IntList"));
-
-        v.push_back(pushint);
+        LinkedList<int> *pushint;
+        pushint = new LinkedList<int>;
+        vInt.push_back(pushint);
     }
 }
 
 
 
+
+
+void MainWindow::on_pushButton_5_clicked() //insert
+{
+
+}
+
+
+void MainWindow::on_pushButton_4_clicked() //duplicates
+{
+
+}
+
+
+void MainWindow::on_pushButton_6_clicked() //sort
+{
+
+}
 

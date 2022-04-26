@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "listEmpty.h"
-#include <QDebug>
+ #include <QDebug>
 
 using namespace std;
 /***************************************************
@@ -17,7 +17,7 @@ template<typename E>
 struct Node{
     E data;
     Node *next;
-    Node( E data ) : data(data), next(0) {}
+    Node( E data ) : data(data), next(nullptr) {}
 };
 
 template<typename E>
@@ -331,8 +331,16 @@ __________________________________________________
       Head and tail point to nullptr
 ****************************************************************/
 template <typename E>
-LinkedList<E>::LinkedList(): head(nullptr), tail(nullptr){}
+LinkedList<E>::LinkedList()
+{
+    //qDebug()
+    head = nullptr;
+    tail = nullptr;
+    cout << "DEFAULt CONSTRUCTOR LINKED LIST CALLED" << std::endl;
+    if(head==nullptr)
+        cout << "CHECK NULL PTR HEAD" << endl;
 
+}
 
 /****************************************************************
 DoublyLinkedList(const DoublyLinkedList &D) || DoublyLinkedList Class
@@ -348,6 +356,7 @@ template <typename E>
 LinkedList<E>::LinkedList(const LinkedList& source)
 {
 
+    cout << "COPY CONSTRUCTOR LINKED LIST CALLED" << std::endl;
     head = nullptr;
     tail = nullptr;
     Node<E> *current;
@@ -372,11 +381,14 @@ __________________________________________________
 template <typename E>
 LinkedList<E>::~LinkedList()
 {
-    while (head != nullptr && tail != nullptr)
+    //qDebug()
+    cout << "DESTRUCTOR LINKED LIST CALLED" << std::endl;
+    while (head != nullptr)// && tail != nullptr)
     {
-        tail = head->next;
-        delete head;
-        head = tail;
+        pop_front();
+        //tail = head->next;
+        //delete head;
+        //head = tail;
     }
 }
 
@@ -393,32 +405,34 @@ __________________________________________________
 template <typename E>
 LinkedList<E> & LinkedList<E>::operator=( const LinkedList& source )
 {
-    qDebug() << "In Linked List overloaded operator called";
+    //qDebug()
+        cout << "In Linked List overloaded operator called" << std::endl;
 
     Node<E> *current;
-
+    // current=this->head;
     // If the lists are the same
     if(this == &source)
-    {    return *this;
-        qDebug() << "copy";
+    {
+        //qDebug()
+        cout << "copy" << std::endl;
+        return *this;
     }
-    // If this list is not empty
-//    if (head != nullptr)
-//    {
-//        qDebug() << "not empty";
-//        while(head != nullptr)
-//            this->pop_front();
-//    }
 
-    qDebug() << "not empty";
+    //If this list is not empty
+    //qDebug() << "head: " << head;
+    if (head!=nullptr)
+    {
+        cout << "not empty" << endl;
+        while(this->head != nullptr)
+            this->pop_front();
+    }
 
     current = source.head;
-    qDebug() << "adding to data";
 
     // Copies over values from D list
     while(current != nullptr)
     {
-        qDebug() << "adding to data";
+        cout << "copying over data" << endl;
         this->push_back(current->data);
         current = current->next;
     }
@@ -466,10 +480,10 @@ void LinkedList<E>::push_front(const E& value)
 {
     Node<E> *newNode;     // IN - node to be added
     newNode = new Node<E>(value);
-
     // If there are no nodes in list
     if(head == nullptr)
     {
+        cout << "PUSHING FRONT TO LINKED LIST\n";
         newNode->next = nullptr;
         // Both head an tail point to new node
         head = newNode;
@@ -539,6 +553,7 @@ void LinkedList<E>::pop_front() //throw(ListEmpty)
         // if last node is to be removed
         else if(head == tail)
         {
+            delete current;
             head = nullptr;
             tail = nullptr;
         }
