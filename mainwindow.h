@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include "vectorList.h"
+#include "date.h"
+#include "complex.h"
+#include "rational.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,11 +38,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
     VectorList<LinkedList<int>> vInt;
-    VectorList<LinkedList<int>> vDouble;
-    VectorList<LinkedList<int>> vString;
-    VectorList<LinkedList<int>> vDate;
-    VectorList<LinkedList<int>> vComplex;
-    VectorList<LinkedList<int>> vRational;
+    VectorList<LinkedList<double>> vDouble;
+    VectorList<LinkedList<string>> vString;
+    VectorList<LinkedList<Date>> vDate;
+    VectorList<LinkedList<Complex>> vComplex;
+    VectorList<LinkedList<Rational>> vRational;
 
 
 };

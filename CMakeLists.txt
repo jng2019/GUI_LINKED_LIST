@@ -22,6 +22,12 @@ set(PROJECT_SOURCES
         listEmpty.h
         linkedList.h
         vectorList.h
+        date.h
+        date.cpp
+        rational.h
+        rational.cpp
+        complex.h
+        complex.cpp
 
 )
 

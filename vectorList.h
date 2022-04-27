@@ -34,7 +34,7 @@ class VectorList
         /***************
         ** ACCESSORS **
         ***************/
-        unsigned size( ) const;
+        int size( ) const;
         unsigned capacity( ) const;
         bool empty( ) const;
         E& at( unsigned index ) const;
@@ -109,7 +109,7 @@ VectorList<E>::~VectorList()
 ** ACCESSORS **
 ***************/
 template <typename E>
-unsigned VectorList<E>::size( ) const
+int VectorList<E>::size( ) const
 {
     return sz;
 }

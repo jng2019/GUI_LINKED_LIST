@@ -841,7 +841,7 @@ string LinkedList<E>::getString() const
     current = head;
     while (current!=nullptr)
     {
-        output+=to_string(current->data);
+        output.append(to_string(current->data));
         current = current->next;
     }
     return output;
