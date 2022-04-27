@@ -33,7 +33,7 @@ void MainWindow::on_pushButton_7_clicked() // push front
     {
         inti = ui->lineEdit->text().toInt();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vInt.at(row)).push_front(inti);
@@ -42,7 +42,7 @@ void MainWindow::on_pushButton_7_clicked() // push front
     {
         doublei = ui->lineEdit->text().toDouble();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vDouble.at(row)).push_front(doublei);
@@ -51,7 +51,7 @@ void MainWindow::on_pushButton_7_clicked() // push front
     {
         stringi = ui->lineEdit->text().toStdString();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vString.at(row)).push_front(stringi);
@@ -89,7 +89,7 @@ void MainWindow::on_pushButton_clicked() // push back button
     {
         inti = ui->lineEdit->text().toInt();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vInt.at(row)).push_back(inti);
@@ -98,7 +98,7 @@ void MainWindow::on_pushButton_clicked() // push back button
     {
         doublei = ui->lineEdit->text().toDouble();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vDouble.at(row)).push_back(doublei);
@@ -107,7 +107,7 @@ void MainWindow::on_pushButton_clicked() // push back button
     {
         stringi = ui->lineEdit->text().toStdString();
         row = list.toStdString().at(list.length()-1) - '1';
-        if (row==-1)
+        if (row<0)
                 ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         else
             (vString.at(row)).push_back(stringi);
@@ -130,6 +130,8 @@ void MainWindow::on_pushButton_clicked() // push back button
 
 void MainWindow::on_pushButton_3_clicked()  //display button
 {
+    LinkedList<string>::Iterator stringit;
+    string sout;
     int row;
     QString list, output;
     list=ui->listWidget->currentItem()->text();
@@ -138,7 +140,7 @@ void MainWindow::on_pushButton_3_clicked()  //display button
     {
         row = list.toStdString().at(list.length()-1) - '1';
 
-        if (row==-1)
+        if (row<0)
         {
             ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         }
@@ -149,25 +151,33 @@ void MainWindow::on_pushButton_3_clicked()  //display button
     {
         row = list.toStdString().at(list.length()-1) - '1';
 
-        if (row==-1)
+        if (row<0)
         {
             ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         }
         else
+        {
             output = QString::fromStdString(vDouble.at(row).getString());
+        }
     }
     else if (list.toStdString().at(0)==QString::fromStdString("S"))
     {
         row = list.toStdString().at(list.length()-1) - '1';
 
-        if (row==-1)
+        if (row<0)
         {
             ui->textBrowser->setText(QString::fromStdString("No list selected!"));
         }
         else
-            output = QString::fromStdString(vString.at(row).getString());
+        {
+            for (stringit = vString.at(row).begin(); stringit!= vString.at(row).end();++stringit)
+            {
+                sout += *stringit;
+            }
+            output = QString::fromStdString(sout);
+        }
     }
-    else if (list.toStdString().at(0)==QString::fromStdString("D"))
+    else if (list.toStdString().at(3)==QString::fromStdString("E"))
     {
 
     }
@@ -249,13 +259,58 @@ void MainWindow::on_pushButton_2_clicked()  //add list
 void MainWindow::on_pushButton_5_clicked() //insert
 {
 
-    int index = ui->lineEdit_2->text().toInt();
-    int row = ui->listWidget->currentRow();
+    int inti;
+    double doublei;
+    string stringi;
+     Date datei;
+     Rational rationali;
+     Complex caomplexi;
 
-//    if (index >=0)
-//    {
-//        vInt.at(row).insert(index, )
-//    }
+
+
+    int row, index;
+    QString list;
+    list=ui->listWidget->currentItem()->text();
+
+    if (list.toStdString().at(0)==QString::fromStdString("I"))
+    {
+        inti = ui->lineEdit->text().toInt();
+        row = list.toStdString().at(list.length()-1) - '1';
+        if (row<0)
+                ui->textBrowser->setText(QString::fromStdString("No list selected!"));
+        else
+            (vInt.at(row)).insert(index, inti);
+    }
+    else if (list.toStdString().at(0)==QString::fromStdString("D"))
+    {
+        doublei = ui->lineEdit->text().toDouble();
+        row = list.toStdString().at(list.length()-1) - '1';
+        if (row<0)
+                ui->textBrowser->setText(QString::fromStdString("No list selected!"));
+        else
+            (vDouble.at(row)).insert(index, doublei);
+    }
+    else if (list.toStdString().at(0)==QString::fromStdString("S"))
+    {
+        stringi = ui->lineEdit->text().toStdString();
+        row = list.toStdString().at(list.length()-1) - '1';
+        if (row<0)
+                ui->textBrowser->setText(QString::fromStdString("No list selected!"));
+        else
+            (vString.at(row)).insert(index, stringi);
+    }
+    else if (list.toStdString().at(0)==QString::fromStdString("D"))
+    {
+
+    }
+    else if (list.toStdString().at(0)==QString::fromStdString("R"))
+    {
+
+    }
+    else if (list.toStdString().at(0)==QString::fromStdString("C"))
+    {
+
+    }
 }
 
 

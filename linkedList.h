@@ -4,6 +4,7 @@
 #include <iostream>
 #include "listEmpty.h"
  #include <QDebug>
+#include <string>
 
 using namespace std;
 /***************************************************
@@ -786,7 +787,7 @@ __________________________________________________
 template <typename E> typename LinkedList<E>::Iterator
 LinkedList<E>::end()
 {
-    return (tail);
+    return (tail->next);
 }
 
 /****************************************************************
@@ -839,11 +840,12 @@ string LinkedList<E>::getString() const
     string output;
     Node<E> *current;
     current = head;
-    while (current!=nullptr)
+    LinkedList<E>::Iterator it;
+    for (it = head; it!= tail->next;++it)
     {
-        output.append(to_string(current->data));
-        current = current->next;
+        output += to_string(*it);
     }
+
     return output;
 }
 
