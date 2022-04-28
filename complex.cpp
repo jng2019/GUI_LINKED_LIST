@@ -218,3 +218,22 @@ istream & operator >> (istream &cin,  Complex &c)
   }
   return cin;
 }
+
+
+std::string Complex::getNum() const
+{
+    std::string ret;
+    ret += std::to_string(real);
+    if (imaginary > 0)
+    {
+        ret += " + ";
+        ret += std::to_string(imaginary);
+    }
+    else
+    {
+        ret += " - ";
+        ret += std::to_string(imaginary*-1);
+    }
+    return ret;
+
+}

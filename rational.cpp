@@ -154,3 +154,35 @@ void Rational::display() const
 {
   std::cout << numer  << "/" << denom;
 }
+
+
+std::string Rational::getNum() const
+{
+    std::string ret;
+    ret += std::to_string(numer);
+    ret += "/";
+    ret += std::to_string(denom);
+    return ret;
+
+}
+
+
+bool Rational::operator==(Rational &right) const
+{
+    return (numer==right.numer && denom == right.denom);
+}
+
+bool Rational::operator!=(Rational &right) const
+{
+    return (numer!=right.numer && denom != right.denom);
+}
+
+bool Rational::operator<(Rational &right) const
+{
+
+    double left, ri;
+    left = static_cast<double> (numer) / denom;
+    ri = static_cast<double> (right.numer) / right.denom;
+
+    return (left < ri);
+}

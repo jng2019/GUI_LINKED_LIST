@@ -207,6 +207,8 @@ public:
 
         void insert(int index, E value);
 
+        E at(int index) const;
+
 };
 
 /*************************************************
@@ -814,6 +816,16 @@ int LinkedList<E>::length() const
     return count;
 }
 
+/****************************************************************
+sum() || DoublyLinkedLst
+ACCESSOR - This functions returns the sum of the nodes
+__________________________________________________
+    Pre:
+      None
+__________________________________________________
+    Post:
+        None
+****************************************************************/
 template <typename E>
 int LinkedList<E>::sum() const
 {
@@ -828,12 +840,32 @@ int LinkedList<E>::sum() const
     return sum;
 }
 
+/****************************************************************
+length() || DoublyLinkedLst
+ACCESSOR - This functions returns if the list is empty
+__________________________________________________
+    Pre:
+      None
+__________________________________________________
+    Post:
+        None
+****************************************************************/
 template <typename E>
 bool LinkedList<E>::isEmpty() const
 {
     return (head==nullptr);
 }
 
+/****************************************************************
+length() || DoublyLinkedLst
+ACCESSOR - This functions returns the value of the nodes as strings
+__________________________________________________
+    Pre:
+      None
+__________________________________________________
+    Post:
+        None
+****************************************************************/
 template <typename E>
 string LinkedList<E>::getString() const
 {
@@ -843,36 +875,84 @@ string LinkedList<E>::getString() const
     LinkedList<E>::Iterator it;
     for (it = head; it!= tail->next;++it)
     {
-        output += to_string(*it);
+        output += to_string(*it) + " ";
     }
 
     return output;
 }
 
+
+/****************************************************************
+length() || DoublyLinkedLst
+MUTATOR - This functions inserts a node with an inputted value
+at a certain index
+__________________________________________________
+    Pre:
+      list contains index
+__________________________________________________
+    Post:
+        size of list increased by 1
+****************************************************************/
 template <typename E>
 void LinkedList<E>::insert(int index, E value)
 {
-    Node<E> *current, *newNode;
+   cout << "start of insert\n";
+    Node<E> * node2 = new Node<E>(value);
+   node2->next = nullptr;
+
+   if (head == nullptr) {
+       cout << "nothing in list\n";
+     //if head is null and position is zero then exit.
+     if (index == 0) {
+         head = node2;
+         tail = node2;
+         return;
+     }
+   }
+
+   if (head != nullptr && index == 0) {
+     node2->next = head;
+     head = node2;
+     return;
+   }
+
+   if (index==this->length())
+   {
+       push_back(value);
+       return;
+   }
+
+   Node<E> * current = head;
+   Node<E> * previous = nullptr;
+
+
+   for (int i = 0; i < index; i++)
+   {
+       previous = current;
+       current = current->next;
+   }
+
+     node2->next = current;
+     previous->next = node2;
+}
+/****************************************************************
+length() || DoublyLinkedLst
+ACCESSOR - This functions returns the value of the node at the index
+__________________________________________________
+    Pre:
+      the index exsits within the list
+__________________________________________________
+    Post:
+        None
+****************************************************************/
+template <typename E>
+E LinkedList<E>::at(int index) const
+{
+    Node<E> *current;
     current = head;
-    newNode = new Node(value);
-    if (index ==0)
-    {
-        newNode->next = head;
-        head = newNode;
-    }
-    else if (index == this->length()-1)
-    {
-        tail->next=newNode;
-        newNode->next=nullptr;
-        tail = newNode;
-    }
-    else
-    {
-        for(int i = 0; i < index; i++)
-            current = current->next;
-        newNode->next = current->next;
-        current->next=newNode;
-    }
+    for (int i = 0; i < index; i++)
+        current=current->next;
+    return current->data;
 }
 
 #endif // LINKEDLIST_H

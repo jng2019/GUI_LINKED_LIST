@@ -487,3 +487,39 @@ Date Date::addDays(int d) const
 {
     return Date();
 }
+
+std::string Date::getNum() const
+{
+    std::string ret;
+    ret += std::to_string(month) + "/" + std::to_string(day) + "/" +  std::to_string(year);
+    return ret;
+}
+
+bool Date::operator==(Date &right) const
+{
+    return (day==right.day && month == right.month && year==right.year);
+}
+
+bool Date::operator!=(Date &right) const
+{
+    return (day!=right.day && month != right.month && year!=right.year);
+}
+
+bool Date::operator<(Date &right) const
+{
+    if (year < right.year)
+        return true;
+    else if (year==right.year)
+    {
+        if (month < right.month)
+            return true;
+        else if (month==right.month)
+        {
+            if (day < right.day)
+                return true;
+            else
+                return false;
+        }
+    }
+    return false;
+}

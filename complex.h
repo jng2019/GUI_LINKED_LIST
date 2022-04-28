@@ -31,6 +31,7 @@ class Complex
     const Complex operator*(const Complex&) const;
     friend ostream & operator << (ostream &cout, const Complex &c);
     friend istream & operator >> (istream &cin,  Complex &c);
+    string getNum() const;
   private:
     double real;           //IN/OUT - real_part of copmplex number
     double imaginary;           //IN/OUT - imaginary part of complex number

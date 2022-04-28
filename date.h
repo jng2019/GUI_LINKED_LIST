@@ -41,6 +41,12 @@ public:
     void printNumeric( )  const;
     void printAlpha( )  const;
 
+    std::string getNum() const;
+
+    bool operator==(Date &right) const;
+    bool operator!=(Date &right) const;
+    bool operator<(Date &right) const;
+
     /***************
     ** MUTATORS **
     ***************/
@@ -151,5 +157,7 @@ public:
 * --------------------------------------------------------------
 *   Return: Date object
 ***************************************************************/
+
+
 
 #endif // DATE_H

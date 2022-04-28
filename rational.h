@@ -30,6 +30,12 @@ class Rational
       const Rational subtract(const Rational &rhs) const;
       const Rational multiply(const Rational &rhs) const;
       const Rational divide(const Rational &rhs) const;
+
+      std::string getNum() const;
+      bool operator==(Rational &right) const;
+      bool operator!=(Rational &right) const;
+      bool operator<(Rational &right) const;
+
       void display() const;
 };
 
